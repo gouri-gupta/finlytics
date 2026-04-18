@@ -20,28 +20,42 @@ export const getDashboardSummary=async (request,response)=>{
     //Monthly or weekly trends
 
     try {
-        
-        
-        let matchStage = {};
+        const baseMatch = {
+            userId: new mongoose.Types.ObjectId(request.user.userId)
+        };
 
-        
-        matchStage.userId = new mongoose.Types.ObjectId(request.user.userId);
+        let filteredMatch = { ...baseMatch };
+
+        if (request.query.year) {
+            const year = parseInt(request.query.year);
+
+            let start = new Date(year, 0, 1);
+            let end = new Date(year, 11, 31, 23, 59, 59);
+
+            if (request.query.month) {
+                const month = parseInt(request.query.month);
+                start = new Date(year, month - 1, 1);
+                end = new Date(year, month, 0, 23, 59, 59);
+            }
+
+            filteredMatch.date = { $gte: start, $lte: end };
+        }
 
         //total income
         const income = await transactModel.aggregate([
-            { $match: { ...matchStage, type: "income" } },
+            { $match: { ...filteredMatch, type: "income" } },
             { $group: { _id: null, total: { $sum: "$amount" } } }
         ]);
 
         //total expense
         const expense = await transactModel.aggregate([
-            { $match: { ...matchStage, type: "expense" } },
+            { $match: { ...filteredMatch, type: "expense" } },
             { $group: { _id: null, total: { $sum: "$amount" } } }
         ]);
 
         //category breakdown
         const categoryBreakdown = await transactModel.aggregate([
-            { $match: matchStage },
+            { $match: filteredMatch },
             {
                 $group: {
                 _id: "$category",
@@ -51,7 +65,33 @@ export const getDashboardSummary=async (request,response)=>{
         ]);
 
         //recent transactions
-        const recent = await transactModel.find(matchStage).sort({ createdAt: -1 }).limit(5);  //give latest 5 transactions
+        const recent = await transactModel.find(baseMatch).sort({ date: -1 }).limit(5);  //give latest 5 transactions
+
+        //monthly trends
+        const monthlyTrends = await transactModel.aggregate([
+            { $match: baseMatch },
+            {
+                $group: {
+                _id: {
+                    year: { $year: "$date" },
+                    month: { $month: "$date" }
+                },
+                income: {
+                    $sum: {
+                    $cond: [{ $eq: ["$type", "income"] }, "$amount", 0]
+                    }
+                },
+                expense: {
+                    $sum: {
+                    $cond: [{ $eq: ["$type", "expense"] }, "$amount", 0]
+                    }
+                }
+                }
+            },
+            {
+                $sort: { "_id.year": 1, "_id.month": 1 }
+            }
+        ]);
 
         //net balance
         const totalIncome = income[0]?.total || 0;
@@ -67,6 +107,7 @@ export const getDashboardSummary=async (request,response)=>{
                 totalExpense,
                 netBalance,
                 categoryBreakdown,
+                monthlyTrends,
                 recentTransactions: recent
             }
         });
@@ -78,6 +119,4 @@ export const getDashboardSummary=async (request,response)=>{
     }
 
 }
-
-
 

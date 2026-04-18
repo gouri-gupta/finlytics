@@ -21,7 +21,7 @@ export const createTransaction=async (request,response)=>{
         }
 
          type=type.toLowerCase()
-         category = category?.trim()
+         category = category?.trim().toLowerCase()
 
         //check whether userId is a valid mongodb object id or not
         if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -94,7 +94,7 @@ export const getTransactions=async (request,response)=>{
 
         //filter by category
         if (request.query.category) {
-            filter.category = request.query.category.trim()
+            filter.category = request.query.category.trim().toLowerCase()
         }
 
         //filter by date
@@ -114,7 +114,7 @@ export const getTransactions=async (request,response)=>{
         let limit = parseInt(request.query.limit) || 10;
         let skip = (page - 1) * limit;
 
-        const allT=await transactModel.find(filter).sort({createdAt:-1}).skip(skip).limit(limit);
+        const allT=await transactModel.find(filter).sort({date:-1}).skip(skip).limit(limit);
 
         const total = await transactModel.countDocuments(filter); //helps the frontend determine the number of pages, manage navigation like page numbers on frontend -> better user experience
 
@@ -294,7 +294,7 @@ export const deleteTransaction=async (request,response)=>{
         }
         
         //valid ID
-        const k=await transactModel.findByOneAndDelete({ _id: id, userId: request.user.userId })
+        const k=await transactModel.findOneAndDelete({ _id: id, userId: request.user.userId })
 
         if(!k){
             return response.status(404).send({

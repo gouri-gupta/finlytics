@@ -7,8 +7,15 @@ import Transactions from '../pages/Transactions'
 import Dashboard from '../pages/Dashboard'
 import Register from '../pages/Register'
 import MainLayout from '../layout/MainLayout'
+import ProtectedRoute from './ProtectedRoute'
 
-
+/*
+Wrap only protected pages
+🔐 Protect these routes:
+Profile ✅
+Transactions ✅
+Dashboard ✅
+*/
 
 const Approutes = () => {
 
@@ -27,15 +34,15 @@ const Approutes = () => {
                 },
                 {
                     path:'/profile',
-                    element:<Profile></Profile>
+                    element:(<ProtectedRoute><Profile></Profile></ProtectedRoute>)
                 },
                 {
                     path:'/transactions',
-                    element:<Transactions></Transactions>
+                    element:(<ProtectedRoute><Transactions></Transactions></ProtectedRoute>)
                 },
                 {
                     path:'/dashboard',
-                    element:<Dashboard></Dashboard>
+                    element:(<ProtectedRoute><Dashboard></Dashboard></ProtectedRoute>)
                 },
                 {
                     path:'/register',
