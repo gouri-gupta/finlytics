@@ -86,22 +86,45 @@ const Register = () => {
 
 
   return (
-    <main>
-      <h1>Register on Finlytics</h1>
-      <h3>Enter the following details to create account</h3>
+    <main className='flex flex-col gap-y-10 '>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Name</label>
-        <input type="text" placeholder='Enter name' name='name' value={name} onChange={handleChange}/> <br />
-        {errors.name && <span>{errors.name}</span>} <br />
-        <label htmlFor="">Email</label>
-        <input type="text" placeholder='Enter email' name='email' value={email} onChange={handleChange}/> <br />
-        {errors.email && <span>{errors.email}</span>} <br />
-        <label htmlFor="">Password</label>
-        <input type="password" placeholder='Enter password' name='password' value={password} onChange={handleChange}/> <br />
-        {errors.password && <span>{errors.password}</span>} <br />
-        <button type='submit'>Register</button>
+      <section className='flex flex-col gap-3'>
+        <h1 className='font-bold text-4xl  text-[#111827] dark:text-[#F9FAFB] text-center'>Register on Finlytics</h1>
+        <h3 className='text-center text-xl italic text-gray-800  dark:text-gray-200'>Enter the following details to create account</h3>
+      </section>
+
+      <section className=' flex flex-row justify-center'>
+        <form onSubmit={handleSubmit} className=' flex flex-col gap-5'>
+
+          <div className=' flex flex-col gap-1 w-full'>
+            <div className=' flex flex-row gap-1 w-full'>
+              <label htmlFor="" className='text-xl text-[#6B7280] dark:text-[#9CA3AF] font-bold p-1 w-1/3'>Name</label>
+              <input type="text" placeholder='Enter name' name='name' value={name} onChange={handleChange} className='bg-[#F3F4F6] w-2/3 border border-gray-700 text-[#111827] p-1 rounded-lg dark:bg-[#1E293B] dark:border-[#4F46E5] dark:text-[#F9FAFB]'/>  
+            </div> 
+            {errors.name && <span className='text-red-800 font-semibold block'>{errors.name}</span>}
+          </div>
+
+          <div className=' flex flex-col gap-1 w-full'>
+            <div className=' flex flex-row gap-1 w-full'>
+              <label htmlFor="" className='text-xl text-[#6B7280] dark:text-[#9CA3AF] font-bold p-1 w-1/3'>Email</label>
+              <input type="text" placeholder='Enter email' name='email' value={email} onChange={handleChange} className='bg-[#F3F4F6] w-2/3 border border-gray-700 text-[#111827] p-1 rounded-lg dark:bg-[#1E293B] dark:border-[#4F46E5] dark:text-[#F9FAFB]'/> 
+            </div>
+            {errors.email && <span className='text-red-800 font-semibold block'>{errors.email}</span>} 
+          </div>
+
+          <div className=' flex flex-col gap-1 w-full'>
+            <div className=' flex flex-row gap-1 w-full'>
+              <label htmlFor="" className='text-xl text-[#6B7280] dark:text-[#9CA3AF] font-bold p-1 w-1/3'>Password</label>
+              <input type="password" placeholder='Enter password' name='password' value={password} onChange={handleChange} className='bg-[#F3F4F6] w-2/3 border border-gray-700 text-[#111827] p-1 rounded-lg dark:bg-[#1E293B] dark:border-[#4F46E5] dark:text-[#F9FAFB]'/> 
+            </div>
+            {errors.password && <span className='text-red-800 font-semibold block'>{errors.password}</span>}
+          </div>
+
+          <div className=' flex justify-center'>
+            <button type='submit' className='bg-indigo-500 border-2 border-indigo-950  text-xl text-white font-bold px-2 py-1 rounded-lg hover:bg-indigo-900'>Register</button>
+          </div>
       </form>
+      </section>
     </main>
   )
 }

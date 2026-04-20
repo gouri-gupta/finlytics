@@ -86,21 +86,40 @@ const Login = () => {
   
 
   return (
-    <main>
-      <h1>Login page</h1>
+    <main className=' flex flex-col gap-y-10 '>  {/**border border-black */}
+      <section className=' '> {/**border border-red-800 */}
+        <h1 className='font-bold text-4xl  text-[#111827] dark:text-[#F9FAFB] text-center'>Welcome back</h1>
+      </section>
 
-      <form onSubmit={handleLogin}>
-        <label htmlFor="">Email</label>
-        <input type="text" name='currEmail' value={currEmail} onChange={handleChange} placeholder='Enter email'/> <br />
-        {errors.email && <span>{errors.email}</span>} <br />
-        <label htmlFor="">Password</label>
-        <input type="password" name='currPass' value={currPass} onChange={handleChange} placeholder='Enter password'/> <br />
-        {errors.pass && <span>{errors.pass}</span>} <br />
-        <button type='submit'>Login</button>
-      </form>
+      <section className=' flex flex-row justify-center'> {/**border border-green-800 */}
+        <form onSubmit={handleLogin} className=' flex flex-col gap-5'> {/**border border-black */}
+          <div className=' flex flex-col gap-1 w-full'> {/**border border-rose-700*/}
+            <div className=' flex flex-row gap-1 w-full'>
+              <label htmlFor="" className='text-xl text-[#6B7280] dark:text-[#9CA3AF] font-bold p-1 w-1/3'>Email</label>
+              <input type="text" name='currEmail' value={currEmail} onChange={handleChange} placeholder='Enter email' className='bg-[#F3F4F6] w-2/3 border border-gray-700 text-[#111827] p-1 rounded-lg dark:bg-[#1E293B] dark:border-[#4F46E5] dark:text-[#F9FAFB]'/> 
+            </div>
+            {errors.email && <span className='text-red-800 font-semibold block'>{errors.email}</span>}
+          </div>
 
-      <h3>Don't have an account?  </h3>
-      <Link to="/register">Register</Link>
+
+          <div className=' flex flex-col gap-1 w-full'> {/** border border-yellow-700*/}
+            <div className=' flex flex-row gap-1 w-full'>
+              <label htmlFor="" className='text-xl text-[#6B7280] dark:text-[#9CA3AF] font-bold p-1 w-1/3'>Password</label>
+              <input type="password" name='currPass' value={currPass} onChange={handleChange} placeholder='Enter password' className='bg-[#F3F4F6] w-2/3 border border-gray-700 text-[#111827] p-1 rounded-lg dark:bg-[#1E293B] dark:border-[#4F46E5] dark:text-[#F9FAFB]'/>  
+            </div> 
+            {errors.pass && <span className='text-red-800 font-semibold'>{errors.pass}</span>}
+          </div>
+          
+          <div className=' flex justify-center' > {/**border border-red-800 */}
+            <button type='submit' className='bg-indigo-500 border-2 border-indigo-950  text-xl text-white font-bold px-2 py-1 rounded-lg hover:bg-indigo-900'>Login</button>
+          </div>
+        </form>
+      </section>
+ 
+      <section className=' flex flex-row lg:gap-1 justify-center'> {/**border border-orange-800 */}
+        <h3 className='text-gray-800 text-xl dark:text-gray-200 font-bold'>Don't have an account?  </h3>
+        <Link to="/register" className='text-indigo-900 font-bold text-xl'>Register</Link>
+      </section>
     </main>
   )
 }

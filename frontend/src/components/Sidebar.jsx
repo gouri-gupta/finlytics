@@ -17,32 +17,37 @@ const Sidebar = () => {
   
 
   return (
-    <main>
+    <main className='border border-gray-400   flex flex-col gap-10 p-2'>
 
-      <div>
-        <Link to="/">Finlytics</Link>
+      <div className='font-extrabold    lg:text-6xl italic text-[#4F46E5] lg:m-2 p-1'>
+        <Link to="/" >Finlytics</Link>
       </div>
 
       {
         isLogin ? (
-          <ul>
+          <ul className='lg:min-w-48  flex flex-col gap-5 bg-gray-100 dark:bg-[#0F172A] h-full'> {/**border border-red-400 */}
             <li>
-              <NavLink to="/profile"><span><CgProfile/></span>Profile</NavLink>
+              <NavLink to="/profile" className={({ isActive }) => (isActive ? 'text-[#4F46E5]' 
+                : ' text-gray-400')}> <div className='border border-gray-500  rounded-lg flex flex-row gap-1 text-2xl font-semibold p-1 hover:bg-indigo-50'><span className='text-4xl'><CgProfile/></span>Profile</div></NavLink>
             </li>
             <li>
-              <NavLink to="/transactions"><span><TbTransactionRupee/></span>Transactions</NavLink>
+              <NavLink to="/transactions" className={({ isActive }) => (isActive ? 'text-[#4F46E5]' 
+                : 'text-gray-400')}> <div className='border border-gray-500  rounded-lg flex flex-row gap-1 text-2xl font-semibold p-1 hover:bg-indigo-50'><span className='text-4xl'><TbTransactionRupee/></span>Transactions</div></NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard"><span><RiDashboardLine/></span>Dashboard</NavLink>
+              <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'text-[#4F46E5]' 
+                : 'text-gray-400')}> <div className='border border-gray-500  rounded-lg flex flex-row gap-1 text-2xl font-semibold p-1 hover:bg-indigo-50'><span className='text-4xl'><RiDashboardLine/></span>Dashboard</div></NavLink>
             </li>
             <li>
-              <NavLink to="/" onClick={logoutUser}><span><IoLogOut/></span>Logout</NavLink>   
+              <NavLink to="/" onClick={logoutUser} className={({ isActive }) => (isActive ? 'text-[#4F46E5]' 
+                : 'text-gray-400')}> <div className='border border-gray-500  rounded-lg flex flex-row gap-1 text-2xl font-semibold p-1 hover:bg-indigo-50'><span className='text-4xl'><IoLogOut/></span>Logout</div></NavLink>   
             </li>
           </ul>
         ) : (
           <ul>
             <li>
-              <NavLink to="/login" ><span><IoLogIn/></span>Login</NavLink>
+              <NavLink to="/login" className={({ isActive }) => (isActive ? 'text-[#4F46E5]' 
+                : 'text-gray-400')}> <div className='border border-gray-500  rounded-lg flex flex-row gap-1 text-2xl font-semibold p-1 hover:bg-indigo-50'><span className='text-4xl'><IoLogIn/></span>Login</div></NavLink>
             </li>
           </ul>
         )
