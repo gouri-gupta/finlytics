@@ -11,17 +11,22 @@ const MainLayout = () => {
       <Sidebar />
 
       {/* Main content */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 flex flex-col">
 
-        {/* Top right toggle */}
-        <div className="flex justify-end mb-4">
+        {/* Top bar */}
+        <div className="flex justify-end p-4">
           <ThemeToggle />
         </div>
 
-        <Outlet />
+        {/* Page content */}
+        <div className="flex-1 p-4 sm:p-6">
+          <Outlet />
+        </div>
+
       </div>
 
     </div>
-  );
-};
+  )
+}
+
 export default MainLayout

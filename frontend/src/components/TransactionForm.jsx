@@ -103,37 +103,91 @@ const TransactionForm = (props) => {
 
 
   return (
-    <div>
-      <h1>Enter transaction details</h1>
+    <div className="flex flex-col gap-4">
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Amount</label>
-        <input type="text" placeholder='Enter amount' name='amount' value={amount} onChange={handleChange}/> <br />
-        {errors.amount && <span>{errors.amount}</span>} <br />
+      <h1 className="text-xl font-bold text-gray-800 dark:text-white text-center">
+        Add Transaction
+      </h1>
 
-        <label htmlFor="">Type</label>
-        <select name="type" id="" value={type} onChange={handleChange}>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>  
-        </select> <br />
-        {errors.type && <span>{errors.type}</span>} <br />
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
 
+        {/* Amount */}
+        <div>
+          <label className="text-sm text-gray-500 dark:text-gray-400">Amount</label>
+          <input
+            type="text"
+            name="amount"
+            value={amount}
+            onChange={handleChange}
+            placeholder="Enter amount"
+            className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white focus:border-indigo-500 outline-none"
+          />
+          {errors.amount && <p className="text-red-500 text-sm">{errors.amount}</p>}
+        </div>
 
-        <label htmlFor="">Category</label>
-        <input type="text" placeholder='Enter category like food,rent etc' name='category' value={category} onChange={handleChange}/> <br />
-        {errors.category && <span>{errors.category}</span>} <br />
+        {/* Type */}
+        <div>
+          <label className="text-sm text-gray-500 dark:text-gray-400">Type</label>
+          <select
+            name="type"
+            value={type}
+            onChange={handleChange}
+            className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+          >
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
 
-        <label htmlFor="">Date</label>
-        <input type="date" name='date' value={date} onChange={handleChange}/> <br />
-        {errors.date && <span>{errors.date}</span>} <br />
+        {/* Category */}
+        <div>
+          <label className="text-sm text-gray-500 dark:text-gray-400">Category</label>
+          <input
+            type="text"
+            name="category"
+            value={category}
+            onChange={handleChange}
+            placeholder="food, rent..."
+            className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+          />
+          {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+        </div>
 
-        <label htmlFor="">Notes</label>
-        <input type="text" placeholder='Any additional notes' name='notes' value={notes} onChange={handleChange}/> <br /> <br />
+        {/* Date */}
+        <div>
+          <label className="text-sm text-gray-500 dark:text-gray-400">Date</label>
+          <input
+            type="date"
+            name="date"
+            value={date}
+            onChange={handleChange}
+            className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+          />
+          {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+        </div>
 
-        <button type='submit'>Add transaction</button>
+        {/* Notes */}
+        <div>
+          <label className="text-sm text-gray-500 dark:text-gray-400">Notes</label>
+          <input
+            type="text"
+            name="notes"
+            value={notes}
+            onChange={handleChange}
+            placeholder="Optional notes"
+            className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+          />
+        </div>
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="mt-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-md transition"
+        >
+          Add Transaction
+        </button>
 
       </form>
-      
     </div>
   )
 }

@@ -109,38 +109,89 @@ const EditTransaction = (props) => {
 }, [currentTransaction])  //for syncing edit state
 
   return (
+    <div className="flex flex-col gap-4">
+
+  <h1 className="text-xl font-bold text-gray-800 dark:text-white text-center">
+    Edit Transaction
+  </h1>
+
+  <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+    {/* Amount */}
     <div>
-      EditTransaction
-
-      
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Amount</label>
-        <input type="text" placeholder='Enter amount' name='amount' value={amount} onChange={handleChange}/> <br />
-        {errors.amount && <span>{errors.amount}</span>}  <br />
-
-        <label htmlFor="">Type</label>
-        <select name="type" id="" value={type} onChange={handleChange}>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>  
-        </select> <br />
-        {errors.type && <span>{errors.type}</span>}  <br />
-
-
-        <label htmlFor="">Category</label>
-        <input type="text" placeholder='Enter category like food,rent etc' name='category' value={category} onChange={handleChange}/> <br />
-        {errors.category && <span>{errors.category}</span>}  <br />
-
-        <label htmlFor="">Date</label>
-        <input type="date" name='date' value={date} onChange={handleChange}/> <br />
-        {errors.date && <span>{errors.date}</span>}  <br />
-
-        <label htmlFor="">Notes</label>
-        <input type="text" placeholder='Any additional notes' name='notes' value={notes} onChange={handleChange}/> <br /> <br />
-
-        <button type='submit'>Edit transaction</button>
-
-      </form>
+      <label className="text-sm text-gray-500 dark:text-gray-400">Amount</label>
+      <input
+        type="text"
+        name="amount"
+        value={amount}
+        onChange={handleChange}
+        className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+      />
+      {errors.amount && <p className="text-red-500 text-sm">{errors.amount}</p>}
     </div>
+
+    {/* Type */}
+    <div>
+      <label className="text-sm text-gray-500 dark:text-gray-400">Type</label>
+      <select
+        name="type"
+        value={type}
+        onChange={handleChange}
+        className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+      >
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+    </div>
+
+    {/* Category */}
+    <div>
+      <label className="text-sm text-gray-500 dark:text-gray-400">Category</label>
+      <input
+        type="text"
+        name="category"
+        value={category}
+        onChange={handleChange}
+        className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+      />
+      {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+    </div>
+
+    {/* Date */}
+    <div>
+      <label className="text-sm text-gray-500 dark:text-gray-400">Date</label>
+      <input
+        type="date"
+        name="date"
+        value={date}
+        onChange={handleChange}
+        className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+      />
+      {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+    </div>
+
+    {/* Notes */}
+    <div>
+      <label className="text-sm text-gray-500 dark:text-gray-400">Notes</label>
+      <input
+        type="text"
+        name="notes"
+        value={notes}
+        onChange={handleChange}
+        className="w-full px-3 py-2 mt-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#0F172A] text-gray-800 dark:text-white"
+      />
+    </div>
+
+    {/* Button */}
+    <button
+      type="submit"
+      className="mt-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-md transition"
+    >
+      Update Transaction
+    </button>
+
+  </form>
+</div>
   )
 }
 

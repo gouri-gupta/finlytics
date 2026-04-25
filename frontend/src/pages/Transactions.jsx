@@ -133,90 +133,149 @@ const Transactions = () => {
 
   return (
 
-    <main>
+    <main className=' flex flex-col gap-10'> {/**border border-black */}
 
       {/**heading like your trnasactions */}
+      {/**SECTION1 */}
+      <section className='bg-white border border-gray-200 rounded-lg shadow-md dark:shadow-xl dark:bg-[#1E293B] dark:border-[#334155] flex flex-col gap-5'>
+        
+      {/**Filters */} 
+        <div className=' flex flex-col lg:flex-row gap-2 lg:gap-0 justify-between content-center mt-1'> {/**border border-yellow-700 */}
 
-      {/**Filters */}
+          <div className=' lg:content-end lg:ml-1'> {/**border border-teal-700 */}  
+            {/**Filter by category */}
+            <input type="text" value={category} placeholder='Search by category' onChange={handleCategoryChange} className='p-1 italic bg-[#F9FAFB] border border-gray-300 rounded-md text-[#111827] dark:text-[#F9FAFB] focus:border-indigo-500 dark:bg-[#0F172A]'/>
+            </div>
 
-      {/**Filter by type : All,income,expense */}
-      <label htmlFor="">Filter by type</label>
-      <select name="type" id="" value={type} onChange={handleTypeChange}>
-        <option value="all">All</option>
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <br /> <br />
+          <div className=' flex flex-col gap-1'> {/**border border-teal-700 */}
+             {/**Filter by type : All,income,expense */}
+            <label htmlFor="" className='text-gray-600 dark:text-gray-400 font-medium text-lg'>Filter by type</label>
+            <select name="type" id="" value={type} onChange={handleTypeChange} className='p-1 bg-[#F9FAFB] border border-gray-300 rounded-md text-[#111827] dark:text-[#F9FAFB] focus:border-indigo-500 dark:bg-[#0F172A]'>
+              <option value="all">All</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
 
-      {/**Filter by category */}
-      <input type="text" value={category} placeholder='Search by category' onChange={handleCategoryChange}/> <br /> <br />
+          <div className=' flex flex-col gap-1'> {/**border border-teal-700 */}  
+            {/**Filter by date */}
+            <label htmlFor="" className='text-gray-600 dark:text-gray-400 font-medium text-lg'>Filter by date</label>
+            <input type="date" value={date} onChange={handleDateChange} className='p-1 bg-[#F9FAFB] border border-gray-300 rounded-md text-[#111827] dark:text-[#F9FAFB] focus:border-indigo-500 dark:bg-[#0F172A]'/> 
+            </div>
 
-      {/**Filter by date */}
-      <label htmlFor="">Filter by date</label>
-      <input type="date" value={date} onChange={handleDateChange}/> <br /><br />
+            <div className=' lg:content-end lg:mr-1'> {/**border border-teal-700 */}
+              {/**Clear all filters */}
+              <button onClick={clearFilters} className='px-2 py-1 font-normal border border-gray-300 text-gray-700 bg-transparent rounded-md dark:bg-gray-400 hover:bg-gray-100 dark:hover:bg-[#334155] dark:border-gray-600 dark:text-gray-300'>Clear filters</button>  
+            </div>
+        </div> 
 
-      {/**Clear all filters */}
-      <button onClick={clearFilters}>Clear filters</button> <br /><br />
-
-      {/**Create transaction */}
-      <button onClick={controlModal}>Add transaction</button>
+        <div className=' flex lg:justify-end lg:m-1'> {/**border border-green-800 */}
+          {/**Create transaction */}
+          <button onClick={controlModal} className='bg-indigo-500 border-2 border-indigo-950  text-xl text-white font-bold px-2 py-1 rounded-lg hover:bg-indigo-900'>Add transaction</button>
+        </div>
+      </section>
 
       {
         showAddModal && 
-        <div>
-          <button onClick={controlModal}>✕</button>
-          <TransactionForm toggleModal={controlModal} refreshList={getTransactions}></TransactionForm>
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+
+          <div className="relative w-[90%] max-w-md bg-white dark:bg-[#1E293B] rounded-xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
+
+            {/* Close Button */}
+            <button
+              onClick={controlModal}
+              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
+            >
+              ✕
+            </button>
+
+            <TransactionForm 
+              toggleModal={controlModal} 
+              refreshList={getTransactions} 
+            />
+
+          </div>
         </div>
       }
 
+      {/**SECTION 2 */}
       {/**display all the transactions See 1st 10 transactions on 1 page and then rest page in footer and so on */}
-      <h1>List of transactions</h1>
+      <section className=''> {/**border border-green-900 */}
+        <h1 className='text-[#6B7280] lg:text-xl font-semibold italic dark:text-[#9CA3AF] m-2'>List of transactions</h1>
 
-      {
-        transactions.length===0 ? (
-          <h1>No transactions found</h1>
-        ) : (
-          transactions.map((t)=>(
-          <div key={t._id}>
-            <p>Amount : {t.amount}</p>
-            <p>Type : {t.type}</p>
-            <p>Category : {t.category}</p>
-            <p>Date : {new Date(t.date).toLocaleDateString()}</p>
-            <p>Notes : {t.notes}</p>
-            <button onClick={()=>editTransaction(t)} disabled={showEditModal}><span><MdEdit/></span></button>
-            <button onClick={()=>deleteTransaction(t._id)}><span><MdDelete/></span></button>
-            
-            <hr />
-          </div>
-        ))
-        )
-      }
-      
-      
-      {
-              showEditModal && 
-              <div>
-                <button onClick={controlEditModal}>✕</button>
-                <EditTransaction toggleModal={controlEditModal} refreshList={getTransactions} currentTransaction={editObj}></EditTransaction>
+        <div className='	grid md:grid-cols-2 lg:grid-cols-2 gap-5 '> {/**border border-orange-700  */}
+            {
+            transactions.length===0 ? (
+              <h1 className='text-[#6B7280] lg:text-xl font-semibold italic dark:text-[#9CA3AF]'>No transactions found</h1>
+            ) : (
+              transactions.map((t)=>(
+              <div key={t._id} className='p-2 border border-gray-200 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300 bg-white text-gray-900 dark:border-gray-700 dark:bg-[#1E293B] dark:text-gray-100'>
+                <p className='font-medium text-lg '>{t.category}</p>
+                <div className='flex flex-row gap-3'>
+                  <p className='font-bold text-xl'>₹{t.amount}</p>
+                  {
+                    t.type==="income" ? <p className='text-green-500 font-bold'>{t.type}</p> : <p className='text-red-500 font-bold'>{t.type}</p>
+                  }
+                </div>
+                <p className='text-base'>Date : {new Date(t.date).toLocaleDateString()}</p>
+                <p className='text-sm'>Notes : {t.notes}</p>
+                <div className='flex flex-row gap-3'>
+                  <button onClick={()=>editTransaction(t)} className='bg-indigo-500 border-2 border-indigo-950  text-xl text-white font-bold p-1 rounded-full hover:bg-indigo-900' disabled={showEditModal}><span><MdEdit/></span></button>
+                  <button onClick={()=>deleteTransaction(t._id)} className='bg-indigo-500 border-2 border-indigo-950  text-xl text-white font-bold p-1 rounded-full hover:bg-indigo-900'><span><MdDelete/></span></button>
+                </div>
               </div>
+            ))
+            )
+          }
+        </div>
+      </section>
+      
+      
+      {
+        showEditModal && 
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+
+          <div className="relative w-[90%] max-w-md bg-white dark:bg-[#1E293B] rounded-xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
+
+            {/* Close Button */}
+            <button
+              onClick={controlEditModal}
+              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
+            >
+              ✕
+            </button>
+
+            <EditTransaction 
+              toggleModal={controlEditModal} 
+              refreshList={getTransactions} 
+              currentTransaction={editObj}
+            />
+
+          </div>
+        </div>
       }
       
 
       {/**footer which display all the page numbers */}
       {/**We will have page nos like 1 2 3  When user clicks on those page numbers then transactions on those page will be displayed */}
-      <div>
-        <h3>Footer</h3>  {/**I have added this here just for better understanding I will remove this later during styling */}
+      {/**SECTION 3 */}
+      <section className="flex justify-center mt-6">
+         {/**I have added this here just for better understanding I will remove this later during styling */}
         {/**highlight current page */}
-        <ul>
+        <ul className="flex gap-2 px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E293B] shadow-sm">
         {
           numbers.map((num)=>(
             <li key={num}>
-              <button onClick={()=>setPage(num)}>{num}</button>
+              <button onClick={()=>setPage(num)} className={`min-w-[32px] text-center px-3 py-1 rounded-md text-sm font-semibold transition-all duration-200
+                ${page === num
+                  ? 'bg-indigo-500 text-white shadow-md scale-105'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-[#334155] hover:scale-105'}
+              `}>{num}</button>
             </li>
           ))
         }
-      </ul>
-      </div>
+        </ul>
+      </section>
 
     </main>
   )
