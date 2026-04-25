@@ -77,9 +77,10 @@ npm run dev
 ## 🔐 Environment Variables
 
 Create a .env file in backend:
-
+```bash
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_secret_key
+```
 
 ---
 
@@ -90,10 +91,10 @@ JWT_SECRET=your_secret_key
 ---
 
 ## 🎯 Future Improvements
-User authentication improvements
-Budget tracking
-Export reports (PDF/CSV)
-Notifications & alerts
+- User authentication improvements
+- Budget tracking
+- Export reports (PDF/CSV)
+- Notifications & alerts
 
 ---
 
@@ -104,6 +105,6 @@ Feel free to fork this repo and submit a PR.
 ---
 
 ## 📬 Contact
-Gouri Gupta
-📧 gouri.gupta220811@gmail.com
-🔗 LinkedIn: (Add your link)
+- Gouri Gupta
+- 📧 gouri.gupta220811@gmail.com
+- 🔗 LinkedIn: https://www.linkedin.com/in/gourigupta2208/
