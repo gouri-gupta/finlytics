@@ -55,3 +55,55 @@ Instead of just tracking money, it helps users understand their spending behavio
 ```bash
 git clone https://github.com/your-username/finlytics.git
 cd finlytics
+```
+
+### 2️⃣ Backend Setup
+```bash
+cd backend
+npm install
+npm start
+```
+
+### 3️⃣ Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+
+## 🔐 Environment Variables
+
+Create a .env file in backend:
+
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+
+---
+
+## 🚧 Deployment
+
+⚙️ Deployment in progress...
+
+---
+
+## 🎯 Future Improvements
+User authentication improvements
+Budget tracking
+Export reports (PDF/CSV)
+Notifications & alerts
+
+---
+
+## 🤝 Contributing
+Contributions are welcome!
+Feel free to fork this repo and submit a PR.
+
+---
+
+## 📬 Contact
+Gouri Gupta
+📧 gouri.gupta220811@gmail.com
+🔗 LinkedIn: (Add your link)
