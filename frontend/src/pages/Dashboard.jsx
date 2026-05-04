@@ -25,7 +25,7 @@ const Dashboard = () => {
       if (year) query.year = year
 
       let response = await axios.get(
-        `http://localhost:3100/api/dashboard`,
+        `https://finlytics-backend-t4r0.onrender.com/api/dashboard`,
         { headers: { 'Authorization': token }, params: query }
       )
 

@@ -30,7 +30,7 @@ const TransactionForm = (props) => {
       const t=localStorage.getItem("token")
       const token=`Bearer ${t}`
       //console.log(token)
-      const newtransaction=await axios.post(`http://localhost:3100/api/transactions`,obj,{headers:{'Authorization':token}})
+      const newtransaction=await axios.post(`https://finlytics-backend-t4r0.onrender.com/api/transactions`,obj,{headers:{'Authorization':token}})
       //console.log(newtransaction)
       let {data}=newtransaction
       if(data.success){

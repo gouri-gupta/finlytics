@@ -20,7 +20,7 @@ const Register = () => {
   async function sendData(obj) {
     //this obj contains user details now we need to send this data to backend
     try {
-      const response=await axios.post(`http://localhost:3100/api/auth/register`,obj)
+      const response=await axios.post(`https://finlytics-backend-t4r0.onrender.com/api/auth/register`,obj)
       let {data}=response
       //console.log(data)
       if(data.success){

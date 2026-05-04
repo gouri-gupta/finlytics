@@ -35,7 +35,7 @@ const EditTransaction = (props) => {
       const token=`Bearer ${t}`
       //console.log(token)
       const editobj={amount:obj.amount,category:obj.category,type:obj.type,date:obj.date,notes:obj.notes}
-      const editTransaction=await axios.patch(`http://localhost:3100/api/transactions/${obj.id}`,editobj,{headers:{'Authorization':token}})
+      const editTransaction=await axios.patch(`https://finlytics-backend-t4r0.onrender.com/api/transactions/${obj.id}`,editobj,{headers:{'Authorization':token}})
       //console.log(newtransaction)
       let {data}=editTransaction
       if(data.success){

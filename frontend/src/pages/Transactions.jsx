@@ -40,7 +40,7 @@ const Transactions = () => {
       if(date){
         queryparams.date=date
       }
-      let response=await axios.get(`http://localhost:3100/api/transactions`,{headers:{'Authorization':token},params:queryparams})
+      let response=await axios.get(`https://finlytics-backend-t4r0.onrender.com/api/transactions`,{headers:{'Authorization':token},params:queryparams})
       //console.log(response)
       let {data}=response
       //console.log(data) 
@@ -78,7 +78,7 @@ const Transactions = () => {
     try {
       const t=localStorage.getItem("token")
       const token=`Bearer ${t}`
-      const response=await axios.delete(`http://localhost:3100/api/transactions/${id}`,{headers:{'Authorization':token}})
+      const response=await axios.delete(`https://finlytics-backend-t4r0.onrender.com/api/transactions/${id}`,{headers:{'Authorization':token}})
       //console.log(response)
       //again here if the transaction is deleted successfully we will give toast message + refresh list of transactions
       let {data}=response

@@ -21,7 +21,7 @@ const Login = () => {
 
   async function sendData(obj){
     try {
-      const response=await axios.post(`http://localhost:3100/api/auth/login`,obj)
+      const response=await axios.post(`https://finlytics-backend-t4r0.onrender.com/api/auth/login`,obj)
       //console.log(response)
       let {data}=response
       //console.log(data)
