@@ -13,7 +13,9 @@ import cors from "cors";
 const app=express()
 
 //Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json())
 
 
