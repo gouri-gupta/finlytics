@@ -13,6 +13,8 @@ Instead of just tracking money, it helps users understand their spending behavio
 📡 API Endpoint:  
 ⚙️ https://finlytics-backend-t4r0.onrender.com
 
+---
+
 ## 🌟 Features
 
 ### 💰 Transaction Management
