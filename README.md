@@ -5,6 +5,14 @@ Instead of just tracking money, it helps users understand their spending behavio
 
 ---
 
+## 🚀 Live Demo
+
+👉 Try Finlytics here:  
+🌐 https://finlytics-lemon.vercel.app  
+
+📡 API Endpoint:  
+⚙️ https://finlytics-backend-t4r0.onrender.com
+
 ## 🌟 Features
 
 ### 💰 Transaction Management
@@ -84,10 +92,10 @@ JWT_SECRET=your_secret_key
 
 ---
 
-## 🚧 Deployment
+## 🚀 Deployment
 
-⚙️ Deployment in progress...
-
+- Frontend deployed on **Vercel**
+- Backend deployed on **Render**
 ---
 
 ## 🎯 Future Improvements
