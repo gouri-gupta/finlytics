@@ -13,9 +13,25 @@ import cors from "cors";
 const app=express()
 
 //Middlewares
+const allowedOrigins = [
+  "http://localhost:5173", // for local development
+  "https://finlytics-lemon.vercel.app" // your deployed frontend
+];
+
 app.use(cors({
-  origin: "*"
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json())
 
 
